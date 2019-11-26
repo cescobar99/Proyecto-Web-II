@@ -1,0 +1,32 @@
+<div class="jumbotron jumbotron-fluid">
+  <div *ngFor='let jug of jugador'>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <img [src]="jug.strFanart1 || jug.strFanart2 || jug.strFanart3 || jug.strFanart4 " class="card-img-top mt-3 img-fluid"
+            alt="Foto del Jugador">
+        </div>
+        <div class="col">
+            <div class="card" style="width: 25rem;">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><h1 class="display-4">{{jug.strPlayer}}</h1></li>
+                  <li class="list-group-item">Posicion : {{jug.strPosition}}</li>
+                  <li class="list-group-item">Dorsal : {{jug.strNumber  || "Sin Dorsal" }}</li>
+                  <li class="list-group-item">
+                    Equipo : <a [routerLink]="['/equipo', jug.idTeam]">
+                    {{jug.strTeam}}
+                  </a>
+                </li>
+                  <li class="list-group-item">Nacionalidad : {{jug.strNationality}}</li>
+                </ul>
+              </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div style="width: 80%; margin: 0 auto;">
+        <p class="text-justify mt-4">{{jug.strDescriptionEN}}</p>
+      </div>
+  </div>
+</div>

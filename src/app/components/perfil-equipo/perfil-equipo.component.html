@@ -1,0 +1,142 @@
+<div class="mt-2 mb-2 ml-2 mr-2 p2">
+
+  <div *ngFor="let equipo of equipos">
+
+    <div class="row">
+      <div class="col-3 ">
+        <div class="col">
+          <img [src]="equipo.strTeamLogo" class="img-fluid ml-5 mb-2" alt="Logo del Equipo">
+        </div>
+        <div class="col mt-5">
+          <img [src]="equipo.strTeamBadge" class="card-img-top mt-3 img-fluid" alt="Escudo del Equipo"
+            style="width : 20rem;">
+        </div>
+
+      </div>
+
+      <div class="col-9">
+        <p class="card-text mt-2 text-justify col-sm-11" style="margin: 0 auto;">{{equipo.strDescriptionEN}}</p>
+        <div class="row">
+          <div class="col-4 mt-4" style="height: 100%;" style="margin: 0 auto;">
+            <img [src]="equipo.strStadiumThumb" class="card-img-top mt-3 img-fluid" alt="Estadio del Equipo">
+          </div>
+          <div class="col-2 mt-4" style="max-height: 100% ; max-width: 100%; margin: 0 auto;">
+            <img [src]="equipo.strTeamJersey" class="card-img-top mt-3 img-fluid" alt="Camiseta del Equipo">
+          </div>
+        </div>
+        <div>
+          <p class="card-text mt-5 text-justify col-sm-11 mb-5" style="margin: 0 auto;">{{equipo.strStadiumDescription}}
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <h2 class="text-center mt-3">Ultimos 5 eventos</h2>
+  <div class="row" style="margin: 0 auto;">
+    <div *ngFor='let ulti_eventos of ultieventos' style="margin: 0 auto;">
+      <div class="col">
+        <div class="card mt-4 mb-2 ml-2 mr-2 p2 bg-light border-info"
+          style="width: 100%; padding-top: -10px; padding-bottom: -10px;">
+          <div class="card-body text-dark">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item bg-light">Evento : {{ulti_eventos.strHomeTeam}} vs
+                {{ulti_eventos.strAwayTeam}}</li>
+              <li class="list-group-item bg-light">{{ulti_eventos.strHomeTeam}} :
+                {{ulti_eventos.intHomeScore || 0}}
+              </li>
+              <li class="list-group-item bg-light">{{ulti_eventos.strAwayTeam}} :
+                {{ulti_eventos.intAwayScore || 0}}
+              </li>
+              <li class="list-group-item bg-light">Fecha : {{ulti_eventos.strDate || ulti_eventos.dateEvent}} </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="text-center mt-3">Proximos 5 eventos</h2>
+  <div class="row" style="margin: 0 auto;">
+    <div *ngFor='let sig_evento of eventos' style="margin: 0 auto;">
+      <div class="col">
+        <div class="card mt-4 mb-2 ml-2 mr-2 p2 bg-light border-info"
+          style="width: 100%; padding-top: -10px; padding-bottom: -10px;">
+          <div class="card-body text-dark">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item bg-light"> Evento :
+                {{sig_evento.strEvent || sig_evento.strEventAlternate}}</li>
+              <li class="list-group-item bg-light">Fecha : {{sig_evento.strDate || sig_evento.dateEvent}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="text-center mt-3">Todos los eventos</h2>
+  
+  <div class="container mt-4">
+      <h3 class="mt-3">Partidos jugados</h3>
+    <table class="table table-hover table-bordered">
+      <thead>
+        <th>Evento</th>
+        <th>Resultado</th>
+        <th>Formacion L</th>
+        <th>Formacion V</th>
+        <th>Tarjetas A. L</th>
+        <th>Tarjetas A. V</th>
+        <th>Cambios L</th>
+        <th>Cambios V</th>
+      </thead>
+      <tbody>
+        <tr *ngFor='let r of todosloseventospasados'>
+          <td>{{r.strEvent || "No disponible"}}</td>
+          <td>{{r.intHomeScore || "No disponible"}}-{{r.intAwayScore || "No disponible"}}</td>
+          <td>{{r.strHomeFormation || "No disponible"}}</td>
+          <td>{{r.strAwayFormation || "No disponible"}}</td>
+          <td>{{r.strHomeYellowCards || "No disponible"}}</td>
+          <td>{{r.strAwayYellowCards || "No disponible"}}</td>
+          <td>{{r.strHomeLineupSubstitutes || "No disponible"}}</td>
+          <td>{{r.strAwayLineupSubstitutes || "No disponible"}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="container mt-4">
+      <h3 class="mt-3">Partidos por jugar</h3>
+    <table class="table table-hover table-bordered">
+      <thead>
+        <th>Evento</th>
+        <th>Fecha</th>
+      </thead>
+      <tbody>
+        <tr *ngFor='let r of todosloseventosfuturos'>
+          <td>{{r.strEvent || "No disponible"}}</td>
+          <td>{{r.dateEvent || "No disponible"}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class= "text-center">Plantilla del equipo</h2>
+  <div class="row ml-2 mt-2">
+    <div *ngFor='let jugador of jugadores'>
+      <div class="col mt-2 mb-2">
+        <a [routerLink]="['/jugador', jugador.idPlayer]">
+          <img [src]="jugador.strThumb ||  jugador.strCutout" class="card-img-top mt-3 img-fluid" alt="Foto del Jugador"
+            style="border-radius: 50%; width: 11.5rem;">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div *ngFor="let equipo of equipos">
+    <app-tabla-posicion [idTeam]="equipo.idTeam"></app-tabla-posicion>
+  </div>
+
+
+</div>

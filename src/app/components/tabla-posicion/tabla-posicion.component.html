@@ -1,0 +1,29 @@
+<h2 class= "text-center">Tabla de posiciones</h2>
+<div class="container mt-4">
+  <table class="table table-hover table-bordered">
+    <thead>
+      <th>Equipo</th>
+      <th>Jugados</th>
+      <th>Goles a Favor</th>
+      <th>Goles en Contra</th>
+      <th>Diferencia de Goles</th>
+      <th>Ganados</th>
+      <th>Empatados</th>
+      <th>Perdidos</th>
+      <th>Total</th>
+    </thead>
+    <tbody>
+      <tr *ngFor='let t of table'>
+        <td>{{t.name}}</td>
+        <td>{{t.played }}</td>
+        <td>{{t.goalsfor }}</td>
+        <td>{{t.goalsagainst }}</td>
+        <td>{{t.goalsdifference }}</td>
+        <td>{{t.win }}</td>
+        <td>{{t.draw }}</td>
+        <td>{{t.loss }}</td>
+        <td>{{t.total  }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
